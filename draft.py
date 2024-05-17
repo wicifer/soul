@@ -29,6 +29,7 @@ def minha_biblioteca(biblioteca):
     elif choice == '2':
       if len(biblioteca) == 0:
         print("Não há livros registrados em sua biblioteca.\n")
+        # loo voltar pro adicionar
       else:
         selecionar_livro(biblioteca)
     elif choice == '3':

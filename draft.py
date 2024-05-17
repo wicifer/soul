@@ -1,4 +1,5 @@
 import json
+import faq
 
 def main_menu():
     print("\n Menu principal: \n")
@@ -149,8 +150,8 @@ def ranking():
 def ofertas():
     print("Espaço de ofertas")
 
-def faq():
-    print("FAQ do site")
+def menu_faq():
+    faq.mostrar_menu_perguntas()
 
 def melhorar_sessao_de_leitura():
     print("Seção de como melhorar sua sessão de leitura")
@@ -215,7 +216,7 @@ def main():
         elif choice == '4':
             ofertas()
         elif choice == '5':
-            faq()
+            menu_faq()
         elif choice == '6':
             melhorar_sessao_de_leitura()
         elif choice == '7':

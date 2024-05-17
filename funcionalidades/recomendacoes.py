@@ -1,58 +1,66 @@
+import json
+
+
 # Dicionário de livros com suas categorias
-livros = {
-    "A Culpa é das Estrelas": ["Romance", "Drama"],
-    "1984": ["Ficção Científica", "Distopia"],
-    "O Senhor dos Anéis": ["Fantasia", "Aventura"],
-    "Dom Quixote": ["Clássico", "Aventura"],
-    "Percy Jackson e o Ladrão de Raios": ["Fantasia", "Aventura"],
-    "O Código Da Vinci": ["Suspense", "Mistério"],
-    "Harry Potter e a Pedra Filosofal": ["Fantasia", "Aventura"],
-    "A Arte da Guerra": ["Filosofia", "Estratégia"],
-    "O Pequeno Príncipe": ["Clássico", "Fantasia"],
-    "Orgulho e Preconceito": ["Romance", "Clássico"]
-}
+def biblioteca_recomendacoes():
+    file = open('arquivos/recomendacoes.txt')
+    livros = json.load(file)
+    return livros
+
+def opcoes_recomendacoes():
+    print("\nEscolha uma categoria para receber recomendações:")
+    print("1. Romance")
+    print("2. Ficção Científica")
+    print("3. Fantasia")
+    print("4. Suspense")
+    print("5. Clássico")
+    print("6. Outro")
+    print("7. Voltar ao menu principal")
 
 # Função para recomendar livros com base na categoria
 def recomendar_livros_por_categoria(categoria):
     recomendacoes = []
+    livros = biblioteca_recomendacoes()
     for livro, categorias in livros.items():
         if categoria in categorias:
             recomendacoes.append(livro)
     return recomendacoes
 
 # Função principal
-print("Bem-vindo ao sistema de recomendação de livros!")
-print("Escolha uma categoria para receber recomendações:")
-print("1. Romance")
-print("2. Ficção Científica")
-print("3. Fantasia")
-print("4. Suspense")
-print("5. Clássico")
-print("6. Outro")
+def main():
+    categoria = []
+    print("\nBem-vindo ao sistema de recomendação de livros!")
 
-escolha = input("\nDigite o número correspondente à categoria desejada: ")
+    while True:
+        opcoes_recomendacoes()
+        escolha = input("\nDigite o número correspondente à categoria desejada: ")
 
-if escolha == "1":
-    categoria = "Romance"
-elif escolha == "2":
-    categoria = "Ficção Científica"
-elif escolha == "3":
-    categoria = "Fantasia"
-elif escolha == "4":
-    categoria = "Suspense"
-elif escolha == "5":
-    categoria = "Clássico"
-else:
-    categoria = input("Digite outra categoria: ")
+        if escolha == "1":
+            categoria = "Romance"
+        elif escolha == "2":
+            categoria = "Ficção Científica"
+        elif escolha == "3":
+            categoria = "Fantasia"
+        elif escolha == "4":
+            categoria = "Suspense"
+        elif escolha == "5":
+            categoria = "Clássico"
+        elif escolha == "6":
+            categoria = input("Digite outra categoria: ")
+        elif escolha == "7":
+            return
+        else:
+            print("Opção inválida.")
 
-recomendacoes = recomendar_livros_por_categoria(categoria)
+        if bool(categoria):
+            recomendacoes = recomendar_livros_por_categoria(categoria)
+            if recomendacoes:
+                print(f"\nRecomendações na categoria '{categoria}':")
+                for livro in recomendacoes:
+                    print("-", livro) 
+            else:
+                print("Não foram encontradas recomendações para essa categoria.")
 
-if recomendacoes:
-    print(f"\nRecomendações na categoria '{categoria}':")
-    for livro in recomendacoes:
-        print("-", livro)
-    print("\n")    
-else:
-    print("Não foram encontradas recomendações para essa categoria.")
+        
 
 

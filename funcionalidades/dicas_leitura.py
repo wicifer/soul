@@ -12,8 +12,6 @@ def melhorar_leitura():
     " 6-Audiolivros: Se o tempo é escasso, os audiolivros podem ser a solução ideal. Você pode ouvir narrativas enquanto realiza outras atividades;"
     " 7-Evite reler trechos: Resistir à tentação de reler trechos é essencial para manter o fluxo da leitura;"
     " 8-Clube do Livro: Juntar-se a um clube do livro não apenas acelera o ritmo de leitura, mas também torna a experiência mais envolvente e enriquecedora;")
-    
-
 
 def dicas_desempenho_leitura():
     print("1-Reservar um tempo específico de leitura diária;"
@@ -27,9 +25,7 @@ def dicas_desempenho_leitura():
     " 9-Melhorar habilidades distintas como foco, memória, agilidade, linguagem e resolução de problemas;"
     " 10-Adquira ordem interior;"
     " 11-Estudar sobre como ler melhor.")
-    
-
-    
+ 
 def main():
     while True:
         menu()
@@ -43,6 +39,3 @@ def main():
             break
         else:
             print("Opção inválida. Por favor, escolha uma opção válida.")
-
-if __name__ == "__main__":
-    main()

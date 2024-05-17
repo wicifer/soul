@@ -174,7 +174,7 @@ def menu_faq():
     faq.mostrar_menu_perguntas()
 
 def menu_dicas_leitura():
-    dicas_leitura.menu()
+    dicas_leitura.main()
     print("Seção de como melhorar sua sessão de leitura")
 
 def sair():

@@ -1,6 +1,7 @@
 import json
 from funcionalidades import faq
 from funcionalidades import dicas_leitura
+from funcionalidades import recomendacoes
 
 def main_menu():
     print("\n Menu principal: \n")
@@ -163,7 +164,7 @@ def chaves_livro(livro):
         counter += 1
 
 def recomendar_livros():
-    print("Recomendações de livros")
+    recomendacoes.main()
 
 def ranking():
     print("Ranking - Quem leu mais livros")

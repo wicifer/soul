@@ -71,7 +71,7 @@ def menu_livro(biblioteca):
 
         choice = input("Escolha uma opção: ")
         if choice == '1':
-            compartilhar(livro)
+            biblioteca = compartilhar(livro)
         elif choice == '2':
             biblioteca = edicao(biblioteca, livro, indice)
         elif choice == '3':
@@ -82,6 +82,22 @@ def menu_livro(biblioteca):
             print("Opção inválida.")
     
     return biblioteca
+
+def compartilhar(livro):
+    print("\nCompartilhando o livro:")
+    print("Título:", livro["titulo"])
+    print("Autor:", livro["autor"])
+    print("Gênero:", livro["genero"])
+    print("Estrelas:", livro["estrelas"])
+    print("Data de Início:", livro["data_inicio"])
+    print("Data de Fim:", livro["data_fim"])
+
+    compartilhar_opcao = input("Deseja compartilhar este livro? (s/n): ")
+    if compartilhar_opcao.lower() == 's':
+        mensagem = input("Digite uma mensagem para compartilhar o livro: ")
+        print(f"\nMensagem compartilhada: {mensagem}\n")
+    else:
+        print("Livro não compartilhado.\n")
 
 def edicao(biblioteca, livro, indice):
     livro_editado = editar_livro(livro)

@@ -1,5 +1,5 @@
 import json
-import faq
+from funcionalidades import faq
 
 def main_menu():
     print("\n Menu principal: \n")
@@ -34,7 +34,7 @@ def minha_biblioteca(biblioteca):
         biblioteca = menu_livro(biblioteca)
         return biblioteca
     elif choice == '3':
-      return
+      return biblioteca
     else:
         print("Opção inválida.")
 

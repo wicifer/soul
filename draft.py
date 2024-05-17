@@ -32,8 +32,6 @@ def minha_biblioteca(biblioteca):
         # loo voltar pro adicionar
       else:
         selecionar_livro(biblioteca)
-        choice = input("Escolha uma opção: ")
-        # TO DO: move this to selecionar_livro method
     elif choice == '3':
       return
     else:
@@ -53,17 +51,42 @@ def get_biblioteca(biblioteca):
     return biblioteca
 
 def mostrar_biblioteca(biblioteca):
+    count = 1
     for livro in biblioteca:
-        print(f'{livro}\n')
+        print(f'{count}. {livro}\n')
+        count += 1
 
-def selecionar_livro():
-    print("Selecionar livro:")
-    print("1. Compartilhar")
+def selecionar_livro(biblioteca):
+    indice = int(input("Digite o número do livro gostaria que deseja selecionar: "))
 
+    try:
+        livro = biblioteca[indice - 1]
+    except:
+        print("Não há livro com esse número em sua biblioteca.")
+    else:
+        print(f'\n Livro selecionado: \n {livro} \n')
+
+        opcoes_livro()
+
+        choice = input("Escolha uma opção: ")
+        if choice == '1':
+            compartilhar(livro)
+        elif choice == '2':
+            return
+            #edit livro
+        elif choice == '3':
+            return
+            #deletar livro
+        elif choice == '4':
+            return
+        else:
+            print("Opção inválida.")
+         
+def opcoes_livro():
+    print("1. Compartilhar")  
     print("2. Editar livro")
     print("3. Excluir livro")
     print("4. Voltar ao menu principal")
-          # TO DO: Handle options for selecting a book
 
 def recomendar_livros():
     print("Recomendações de livros")
@@ -111,6 +134,7 @@ def adicionar_livro(biblioteca):
 
 def salvar_biblioteca(biblioteca):
     file = open('biblioteca.txt', 'w')
+
     for livro in biblioteca:
         livro = json.dumps(livro)
         file.write(livro + '\n')

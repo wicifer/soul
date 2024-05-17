@@ -74,15 +74,7 @@ def menu_livro(biblioteca):
         elif choice == '2':
             biblioteca = edicao(biblioteca, livro, indice)
         elif choice == '3':
-            confirmacao = int(input("Tem certeza que deseja deletar o livro de sua biblioteca? \n 1. Sim\n 2. Não"))
-            if confirmacao == 1:
-                biblioteca.pop(indice)
-                salvar_biblioteca(biblioteca)
-                print("Livro deletado!")
-            elif confirmacao == 2: 
-                return biblioteca
-            else:
-                print("Opção inválida.")
+            biblioteca = deletar_livro(biblioteca, indice)
         elif choice == '4':
             return biblioteca
         else:
@@ -95,6 +87,18 @@ def edicao(biblioteca, livro, indice):
     biblioteca[indice] = livro_editado
     salvar_biblioteca(biblioteca)
     print("Livro editado!")
+    return biblioteca
+
+def deletar_livro(biblioteca, indice):
+    confirmacao = int(input("Tem certeza que deseja deletar o livro de sua biblioteca? \n 1. Sim\n 2. Não\n"))
+    if confirmacao == 1:
+        biblioteca.pop(indice)
+        salvar_biblioteca(biblioteca)
+        print("Livro deletado!")
+    elif confirmacao == 2: 
+        print("Ok, livro não deletado!")
+    else:
+        print("Opção inválida.")
     return biblioteca
          
 def opcoes_livro():

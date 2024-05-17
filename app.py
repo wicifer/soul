@@ -1,5 +1,6 @@
 import json
 from funcionalidades import faq
+from funcionalidades import dicas_leitura
 
 def main_menu():
     print("\n Menu principal: \n")
@@ -8,7 +9,7 @@ def main_menu():
     print("3. Ranking - Quem leu mais livros")
     print("4. Espaço de ofertas")
     print("5. FAQ do site")
-    print("6. Seção de como melhorar sua sessão de leitura")
+    print("6. Dicas para melhorar sua sessão de leitura")
     print("7. Sair")
 
 def minha_biblioteca(biblioteca):
@@ -48,6 +49,7 @@ def get_biblioteca(biblioteca):
         for line in file:
             livro = json.loads(line)
             biblioteca.append(livro)
+        file.close()
 
     return biblioteca
 
@@ -172,7 +174,8 @@ def ofertas():
 def menu_faq():
     faq.mostrar_menu_perguntas()
 
-def melhorar_sessao_de_leitura():
+def menu_dicas_leitura():
+    dicas_leitura.main()
     print("Seção de como melhorar sua sessão de leitura")
 
 def sair():
@@ -237,7 +240,7 @@ def main():
         elif choice == '5':
             menu_faq()
         elif choice == '6':
-            melhorar_sessao_de_leitura()
+            menu_dicas_leitura()
         elif choice == '7':
             sair()
         else:

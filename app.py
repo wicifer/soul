@@ -83,6 +83,25 @@ def menu_livro(biblioteca):
     
     return biblioteca
 
+def compartilhar(livro):
+    print("\nCompartilhando o livro:")
+    print("Título:", livro["titulo"])
+    print("Autor:", livro["autor"])
+    print("Gênero:", livro["genero"])
+    print("Estrelas:", livro["estrelas"])
+
+    compartilhar_opcao = input("Deseja compartilhar este livro? (s/n): ")
+    if compartilhar_opcao.lower() == 's':
+        personalizar = input("Deseja personalizar a mensagem? (s/n): ")
+        if personalizar.lower() == 's':
+            mensagem = input("Adicione uma mensagem para compartilhar o livro: ")
+            mensagem = f"{mensagem} \n{livro['titulo']} por {livro['autor']}"
+        else:
+            mensagem = f"Achei este livro a sua cara! Dê uma chance para {livro['titulo']} por {livro['autor']}."
+        print(f"\nMensagem compartilhada: {mensagem}\n")
+    else:
+        print("Livro não compartilhado.\n")
+
 def edicao(biblioteca, livro, indice):
     livro_editado = editar_livro(livro)
     biblioteca[indice] = livro_editado
@@ -91,12 +110,12 @@ def edicao(biblioteca, livro, indice):
     return biblioteca
 
 def deletar_livro(biblioteca, indice):
-    confirmacao = int(input("Tem certeza que deseja deletar o livro de sua biblioteca? \n 1. Sim\n 2. Não\n"))
-    if confirmacao == 1:
+    confirmacao = input("Tem certeza que deseja deletar o livro de sua biblioteca? (s/n): ")
+    if confirmacao.lower() == 's':
         biblioteca.pop(indice)
         salvar_biblioteca(biblioteca)
         print("Livro deletado!")
-    elif confirmacao == 2: 
+    elif confirmacao.lower() == 'n': 
         print("Ok, livro não deletado!")
     else:
         print("Opção inválida.")

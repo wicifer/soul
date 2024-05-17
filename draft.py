@@ -57,10 +57,10 @@ def mostrar_biblioteca(biblioteca):
         count += 1
 
 def menu_livro(biblioteca):
-    indice = int(input("Digite o número do livro gostaria que deseja selecionar: "))
+    indice = int(input("Digite o número do livro gostaria que deseja selecionar: ")) - 1
 
     try:
-        livro = biblioteca[indice - 1]
+        livro = biblioteca[indice]
     except:
         print("Não há livro com esse número em sua biblioteca.")
     else:
@@ -72,18 +72,29 @@ def menu_livro(biblioteca):
         if choice == '1':
             compartilhar(livro)
         elif choice == '2':
-            livro_editado = editar_livro(livro)
-            biblioteca[indice - 1] = livro_editado
-            salvar_biblioteca(biblioteca)
-            print("Livro editado!")
+            biblioteca = edicao(biblioteca, livro, indice)
         elif choice == '3':
-            return
-            #deletar livro
+            confirmacao = int(input("Tem certeza que deseja deletar o livro de sua biblioteca? \n 1. Sim\n 2. Não"))
+            if confirmacao == 1:
+                biblioteca.pop(indice)
+                salvar_biblioteca(biblioteca)
+                print("Livro deletado!")
+            elif confirmacao == 2: 
+                return biblioteca
+            else:
+                print("Opção inválida.")
         elif choice == '4':
             return biblioteca
         else:
             print("Opção inválida.")
     
+    return biblioteca
+
+def edicao(biblioteca, livro, indice):
+    livro_editado = editar_livro(livro)
+    biblioteca[indice] = livro_editado
+    salvar_biblioteca(biblioteca)
+    print("Livro editado!")
     return biblioteca
          
 def opcoes_livro():

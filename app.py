@@ -1,6 +1,8 @@
 import json
-from funcionalidades import faq
 from funcionalidades import dicas_leitura
+from funcionalidades import faq
+from funcionalidades import ofertas
+from funcionalidades import ranking
 from funcionalidades import recomendacoes
 
 def main_menu():
@@ -166,10 +168,10 @@ def chaves_livro(livro):
 def recomendar_livros():
     recomendacoes.main()
 
-def ranking():
-    print("Ranking - Quem leu mais livros")
+def menu_ranking():
+    ranking.main()
 
-def ofertas():
+def menu_ofertas():
     print("Espaço de ofertas")
 
 def menu_faq():
@@ -235,9 +237,9 @@ def main():
         elif choice == '2':
             recomendar_livros()
         elif choice == '3':
-            ranking()
+            menu_ranking()
         elif choice == '4':
-            ofertas()
+            menu_ofertas()
         elif choice == '5':
             menu_faq()
         elif choice == '6':

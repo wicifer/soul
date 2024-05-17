@@ -13,6 +13,15 @@ livros = {
     "O Pequeno Príncipe": ["Clássico", "Fantasia"],
     "Orgulho e Preconceito": ["Romance", "Clássico"]
 }
+def opcoes_recomendacoes():
+    print("\nEscolha uma categoria para receber recomendações:")
+    print("1. Romance")
+    print("2. Ficção Científica")
+    print("3. Fantasia")
+    print("4. Suspense")
+    print("5. Clássico")
+    print("6. Outro")
+    print("7. Voltar ao menu principal")
 
 # Função para recomendar livros com base na categoria
 def recomendar_livros_por_categoria(categoria):
@@ -28,16 +37,7 @@ def main():
     print("\nBem-vindo ao sistema de recomendação de livros!")
 
     while True:
-        # TO DO: mover para um método separado
-        print("\nEscolha uma categoria para receber recomendações:")
-        print("1. Romance")
-        print("2. Ficção Científica")
-        print("3. Fantasia")
-        print("4. Suspense")
-        print("5. Clássico")
-        print("6. Outro")
-        print("7. Voltar ao menu principal")
-
+        opcoes_recomendacoes()
         escolha = input("\nDigite o número correspondente à categoria desejada: ")
 
         if escolha == "1":

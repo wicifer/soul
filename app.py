@@ -89,12 +89,15 @@ def compartilhar(livro):
     print("Autor:", livro["autor"])
     print("Gênero:", livro["genero"])
     print("Estrelas:", livro["estrelas"])
-    print("Data de Início:", livro["data_inicio"])
-    print("Data de Fim:", livro["data_fim"])
 
     compartilhar_opcao = input("Deseja compartilhar este livro? (s/n): ")
     if compartilhar_opcao.lower() == 's':
-        mensagem = input("Digite uma mensagem para compartilhar o livro: ")
+        personalizar = input("Deseja personalizar a mensagem? (s/n): ")
+        if personalizar.lower() == 's':
+            mensagem = input("Adicione uma mensagem para compartilhar o livro: ")
+            mensagem = f"{mensagem} \n{livro['titulo']} por {livro['autor']}"
+        else:
+            mensagem = f"Achei este livro a sua cara! Dê uma chance para {livro['titulo']} por {livro['autor']}."
         print(f"\nMensagem compartilhada: {mensagem}\n")
     else:
         print("Livro não compartilhado.\n")
@@ -108,11 +111,11 @@ def edicao(biblioteca, livro, indice):
 
 def deletar_livro(biblioteca, indice):
     confirmacao = input("Tem certeza que deseja deletar o livro de sua biblioteca? (s/n): ")
-    if confirmacao == 's':
+    if confirmacao.lower() == 's':
         biblioteca.pop(indice)
         salvar_biblioteca(biblioteca)
         print("Livro deletado!")
-    elif confirmacao == 'n': 
+    elif confirmacao.lower() == 'n': 
         print("Ok, livro não deletado!")
     else:
         print("Opção inválida.")

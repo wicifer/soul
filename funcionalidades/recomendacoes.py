@@ -1,18 +1,12 @@
-# Dicionário de livros com suas categorias
+import json
 
-# TO DO: colocar num arquivo
-livros = {
-    "A Culpa é das Estrelas": ["Romance", "Drama"],
-    "1984": ["Ficção Científica", "Distopia"],
-    "O Senhor dos Anéis": ["Fantasia", "Aventura"],
-    "Dom Quixote": ["Clássico", "Aventura"],
-    "Percy Jackson e o Ladrão de Raios": ["Fantasia", "Aventura"],
-    "O Código Da Vinci": ["Suspense", "Mistério"],
-    "Harry Potter e a Pedra Filosofal": ["Fantasia", "Aventura"],
-    "A Arte da Guerra": ["Filosofia", "Estratégia"],
-    "O Pequeno Príncipe": ["Clássico", "Fantasia"],
-    "Orgulho e Preconceito": ["Romance", "Clássico"]
-}
+
+# Dicionário de livros com suas categorias
+def biblioteca_recomendacoes():
+    file = open('arquivos/recomendacoes.txt')
+    livros = json.load(file)
+    return livros
+
 def opcoes_recomendacoes():
     print("\nEscolha uma categoria para receber recomendações:")
     print("1. Romance")
@@ -26,6 +20,7 @@ def opcoes_recomendacoes():
 # Função para recomendar livros com base na categoria
 def recomendar_livros_por_categoria(categoria):
     recomendacoes = []
+    livros = biblioteca_recomendacoes()
     for livro, categorias in livros.items():
         if categoria in categorias:
             recomendacoes.append(livro)

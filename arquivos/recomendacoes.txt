@@ -1,0 +1,12 @@
+{
+    "A Culpa é das Estrelas": ["Romance", "Drama"],
+    "1984": ["Ficção Científica", "Distopia"],
+    "O Senhor dos Anéis": ["Fantasia", "Aventura"],
+    "Dom Quixote": ["Clássico", "Aventura"],
+    "Percy Jackson e o Ladrão de Raios": ["Fantasia", "Aventura"],
+    "O Código Da Vinci": ["Suspense", "Mistério"],
+    "Harry Potter e a Pedra Filosofal": ["Fantasia", "Aventura"],
+    "A Arte da Guerra": ["Filosofia", "Estratégia"],
+    "O Pequeno Príncipe": ["Clássico", "Fantasia"],
+    "Orgulho e Preconceito": ["Romance", "Clássico"]
+}

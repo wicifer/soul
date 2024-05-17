@@ -1,7 +1,7 @@
 import json
 
 def main_menu():
-    print("Menu principal:")
+    print("\n Menu principal: \n")
     print("1. Minha biblioteca")
     print("2. Recomendações de livros")
     print("3. Ranking - Quem leu mais livros")
@@ -14,7 +14,7 @@ def minha_biblioteca(biblioteca):
     if not biblioteca:
         biblioteca = get_biblioteca(biblioteca)
 
-    print("Minha biblioteca:\n")
+    print("\n Minha biblioteca:\n")
     mostrar_biblioteca(biblioteca)
 
     print("1. Adicionar livro")
@@ -29,9 +29,9 @@ def minha_biblioteca(biblioteca):
     elif choice == '2':
       if len(biblioteca) == 0:
         print("Não há livros registrados em sua biblioteca.\n")
-        # loo voltar pro adicionar
       else:
-        selecionar_livro(biblioteca)
+        biblioteca = menu_livro(biblioteca)
+        return biblioteca
     elif choice == '3':
       return
     else:
@@ -56,7 +56,7 @@ def mostrar_biblioteca(biblioteca):
         print(f'{count}. {livro}\n')
         count += 1
 
-def selecionar_livro(biblioteca):
+def menu_livro(biblioteca):
     indice = int(input("Digite o número do livro gostaria que deseja selecionar: "))
 
     try:
@@ -72,21 +72,58 @@ def selecionar_livro(biblioteca):
         if choice == '1':
             compartilhar(livro)
         elif choice == '2':
-            return
-            #edit livro
+            livro_editado = editar_livro(livro)
+            biblioteca[indice - 1] = livro_editado
+            salvar_biblioteca(biblioteca)
+            print("Livro editado!")
         elif choice == '3':
             return
             #deletar livro
         elif choice == '4':
-            return
+            return biblioteca
         else:
             print("Opção inválida.")
+    
+    return biblioteca
          
 def opcoes_livro():
     print("1. Compartilhar")  
     print("2. Editar livro")
     print("3. Excluir livro")
     print("4. Voltar ao menu principal")
+
+def editar_livro(livro):
+    print(f"{livro} \n")
+
+    chaves_livro(livro)
+
+    choice = int(input("\n O que deseja alterar? "))
+
+    if choice == 1:
+        titulo = input("Digite o novo título: ")
+        livro['titulo'] = titulo
+    elif choice == 2:
+        autor = input("Digite o novo título: ")
+        livro['autor'] = autor
+    elif choice == 3:
+        genero = input("Digite o novo gênero: ")
+        livro['genero'] = genero
+    elif choice == 4:
+        estrelas = int(input("Digite as novas estrelas: "))
+        livro['estrelas'] = estrelas
+    elif choice == 5:
+        data_inicio = input("Digite a nova data de início: ")
+        livro['data_inicio'] = data_inicio
+    elif choice == 6:
+        data_fim = input("Digite a nova data de fim: ")
+        livro['data_fim'] = data_fim
+    return livro
+
+def chaves_livro(livro):
+    counter = 1
+    for line in livro:
+        print(f'{counter}. {line}')
+        counter += 1
 
 def recomendar_livros():
     print("Recomendações de livros")
@@ -147,7 +184,7 @@ def main():
     # username = login()
 
     username = 'João'
-    print(f"Olá, {username}. \n")
+    print(f"Olá, {username}.")
     biblioteca = []
 
     while True:

@@ -1,0 +1,6 @@
+('Maria', 8)
+('Pedro', 7)
+('Isabela', 10)
+('Cláudio', 5)
+('Lucas', 11)
+('Ana Paula', 2)

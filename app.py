@@ -49,6 +49,7 @@ def get_biblioteca(biblioteca):
         for line in file:
             livro = json.loads(line)
             biblioteca.append(livro)
+        file.close()
 
     return biblioteca
 

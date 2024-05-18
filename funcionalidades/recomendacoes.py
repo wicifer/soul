@@ -1,6 +1,5 @@
 import json
 
-
 # Dicionário de livros com suas categorias
 def biblioteca_recomendacoes():
     file = open('arquivos/recomendacoes.txt')
@@ -60,7 +59,3 @@ def main():
                     print("-", livro) 
             else:
                 print("Não foram encontradas recomendações para essa categoria.")
-
-        
-
-

@@ -1,6 +1,7 @@
 from funcionalidades import biblioteca
 from funcionalidades import dicas_leitura
 from funcionalidades import faq
+from funcionalidades import login
 from funcionalidades import ofertas
 from funcionalidades import ranking
 from funcionalidades import recomendacoes
@@ -34,40 +35,43 @@ def menu_dicas_leitura():
     dicas_leitura.main()
     print("Seção de como melhorar sua sessão de leitura")
 
+def menu_login():
+    return login.main()
+
 def sair():
     print("Saindo do programa...")
     exit()
 
 def main():
-    # TO DO: login
-    # Salvar senha em um arquivo, checar se a senha bate com o login etc
-    # talvez encriptar
-    # username = login()
+    print("Soul v0.1")
+    login = menu_login()
 
-    username = 'João'
-    print(f"Olá, {username}.")
-    biblioteca_usuario = []
+    if login["resultado"] == True:
+        print(f"Olá, {login['username']}.")
+        biblioteca_usuario = []
 
-    while True:
-        main_menu()
-        choice = input("Escolha uma opção: ")
+        while True:
+            main_menu()
+            choice = input("Escolha uma opção: ")
 
-        if choice == '1':
-            biblioteca_usuario =  menu_biblioteca(biblioteca_usuario)
-        elif choice == '2':
-            recomendar_livros()
-        elif choice == '3':
-            menu_ranking()
-        elif choice == '4':
-            menu_ofertas()
-        elif choice == '5':
-            menu_faq()
-        elif choice == '6':
-            menu_dicas_leitura()
-        elif choice == '7':
-            sair()
+            if choice == '1':
+                biblioteca_usuario =  menu_biblioteca(biblioteca_usuario)
+            elif choice == '2':
+                recomendar_livros()
+            elif choice == '3':
+                menu_ranking()
+            elif choice == '4':
+                menu_ofertas()
+            elif choice == '5':
+                menu_faq()
+            elif choice == '6':
+                menu_dicas_leitura()
+            elif choice == '7':
+                sair()
+            else:
+                print("Opção inválida.")
         else:
-            print("Opção inválida.")
+            sair()
 
 if __name__ == "__main__":
     main()

@@ -24,4 +24,3 @@ def mostrar_menu_perguntas():
                 print(f"Resposta: {resposta}")
             else:
                 return
-    

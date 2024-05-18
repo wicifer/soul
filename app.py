@@ -172,7 +172,7 @@ def menu_ranking():
     ranking.main()
 
 def menu_ofertas():
-    print("Espaço de ofertas")
+    ofertas.main()
 
 def menu_faq():
     faq.mostrar_menu_perguntas()

@@ -52,7 +52,6 @@ def main():
             username = input("Digite o nome de usuário: ")
             password = input("Digite a senha: ")
             resultado_login = login(username, password)
-            print(resultado_login)
             if resultado_login == True:
                 return { "resultado": True, "username": username }
         elif choice == '2':

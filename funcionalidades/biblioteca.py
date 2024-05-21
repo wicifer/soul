@@ -138,12 +138,6 @@ def editar_livro(livro):
     elif choice == 4:
         estrelas = int(input("Digite as novas estrelas: "))
         livro['estrelas'] = estrelas
-    elif choice == 5:
-        data_inicio = input("Digite a nova data de início: ")
-        livro['data_inicio'] = data_inicio
-    elif choice == 6:
-        data_fim = input("Digite a nova data de fim: ")
-        livro['data_fim'] = data_fim
     return livro
 
 def chaves_livro(livro):
@@ -157,16 +151,12 @@ def adicionar_livro(biblioteca):
     autor = input("Digite o autor: ")
     genero = input("Digite o gênero: ")
     estrelas = input("Quantas estrelas? (1-5)")
-    data_inicio = input("Quando começou a ler? (formato dd/mm/aaaa) ")
-    data_fim = input("Quando terminou de ler? (formato dd/mm/aaaa) ")
 
     livro = {
         "titulo": titulo,
         "autor": autor,
         "genero": genero,
-        "estrelas": estrelas,
-        "data_inicio": data_inicio,
-        "data_fim": data_fim
+        "estrelas": estrelas
     }
 
     biblioteca.append(livro)

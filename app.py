@@ -33,7 +33,6 @@ def menu_faq():
 
 def menu_dicas_leitura():
     dicas_leitura.main()
-    print("Seção de como melhorar sua sessão de leitura")
 
 def menu_login():
     return login.main()

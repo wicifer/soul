@@ -1,6 +1,10 @@
+from flask import Flask, render_template, request, redirect, url_for, flash
+
 def main():
-    print("\n Ofertas:")
+    ofertas = []
     file = open("arquivos/ofertas.txt")
     for line in file:
-        livro = print(f"- {line}")
+        ofertas.append(line)
     file.close()
+    
+    return render_template('ofertas.html', ofertas=ofertas)

@@ -7,6 +7,7 @@ def arquivo_rank():
     lines = file.readlines()
     for line in lines:
         rank.append(eval(line.strip()))
+    file.close()
 
     return rank
 

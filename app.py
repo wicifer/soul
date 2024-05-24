@@ -86,14 +86,17 @@ def recomendar():
     genero = request.form['genero']
     return recomendacoes.recomendar(genero)
 
+@app.route('/ranking', methods=['GET'])
 def menu_ranking():
-    ranking.main()
+    return ranking.main()
 
+@app.route('/ofertas', methods=['GET'])
 def menu_ofertas():
-    ofertas.main()
+    return ofertas.main()
 
+@app.route('/faq', methods=['GET'])
 def menu_faq():
-    faq.mostrar_menu_perguntas()
+    return faq.mostrar_menu_perguntas()
 
 def menu_dicas_leitura():
     dicas_leitura.main()

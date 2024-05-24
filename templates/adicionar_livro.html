@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul v0.1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Soul v0.1</h1>
+
+    <form action="/biblioteca/adicionar_livro" method="POST">
+        <h2>Adicionar Livro</h2>
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" name="autor" required>
+        <label for="genero">Gênero:</label>
+        <input type="text" id="genero" name="genero" required>
+        <label for="estrelas">Estrelas:</label>
+        <input type="text" id="estrelas" name="estrelas" required>
+
+        <button type="submit">Adicionar</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

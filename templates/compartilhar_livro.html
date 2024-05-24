@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul v0.1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Soul v0.1</h1>
+
+    <div class="menu">
+        <h2>Mensagem de compartilhamento:</h2>
+        <ul>
+            <li>   
+                <h1>{{ mensagem }}</h1>
+            </li>
+        </ul>
+    </div>
+
+    <form action="/biblioteca/selecionar_livro" method="POST">
+        <button type="submit">Voltar</button>
+        <input type="hidden" name="book_info" value="{{ livro }}">
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

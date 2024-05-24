@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul v0.1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Soul v0.1</h1>
+
+    <div class="menu">
+        <h2>Livro</h2>
+        <ul>
+            <li>   
+                <h1>{{ livro }}</h1>
+            </li>
+        </ul>
+    </div>
+
+    <form action="/biblioteca/compartilhar_livro_menu" method="POST">
+        <button type="submit">Compartilhar</button>
+        <input type="hidden" name="book_info" value="{{ livro }}">
+    </form>
+
+    <form action="/biblioteca/editar_livro_menu" method="POST">
+        <button type="submit">Editar</button>
+        <input type="hidden" name="book_info" value="{{ livro }}">
+    </form>
+
+    <form action="/biblioteca/excluir_livro_menu" method="POST">
+        <button type="submit">Excluir</button>
+        <input type="hidden" name="book_info" value="{{ livro }}">
+    </form>
+
+    <form action="/biblioteca" method="GET">
+        <button type="submit">Voltar para a biblioteca</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

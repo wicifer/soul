@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul v0.1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Soul v0.1</h1>
+
+    <form action="/biblioteca" method="GET">
+        <button type="submit">Minha biblioteca</button>
+    </form>
+
+    <form action="/signin" method="POST">
+        <button type="submit">Recomendações de livros</button>
+    </form>
+
+    <form action="/signin" method="POST">
+        <button type="submit">Ranking</button>
+    </form>
+
+    <form action="/signin" method="POST">
+        <button type="submit">Espaço de ofertas</button>
+    </form>
+
+    <form action="/signin" method="POST">
+        <button type="submit">FAQ</button>
+    </form>
+
+    <form action="/signin" method="POST">
+        <button type="submit">Melhore sua leitura</button>
+    </form>
+
+    <form action="/" method="GET">
+        <button type="submit">Sair</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

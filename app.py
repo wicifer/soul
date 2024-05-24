@@ -114,37 +114,5 @@ def signin():
 def create_user():
     return login.criar_usuario()
 
-# def main():
-#     print("Soul v0.1")
-#     login = menu_login()
-
-#     if login["resultado"] == True:
-#         print(f"Olá, {login['username']}.")
-#         biblioteca_usuario = []
-
-#         while True:
-#             main_menu()
-#             choice = input("Escolha uma opção: ")
-
-#             if choice == '1':
-#                 biblioteca_usuario =  menu_biblioteca(biblioteca_usuario)
-#             elif choice == '2':
-#                 recomendar_livros()
-#             elif choice == '3':
-#                 menu_ranking()
-#             elif choice == '4':
-#                 menu_ofertas()
-#             elif choice == '5':
-#                 menu_faq()
-#             elif choice == '6':
-#                 menu_dicas_leitura()
-#             elif choice == '7':
-#                 sair()
-#             else:
-#                 print("Opção inválida.")
-#         else:
-#             sair()
-
 if __name__ == "__main__":
-    # main()
     app.run(debug=True)

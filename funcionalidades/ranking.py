@@ -1,3 +1,5 @@
+from flask import Flask, render_template, request, redirect, url_for, flash
+
 def arquivo_rank():
     rank = []
     file = open('arquivos/ranking.txt')
@@ -17,12 +19,14 @@ def gerar_brinde(posicao, nome):
         return f"🥉 Parabéns {nome}! Você alcançou o terceiro lugar no pódio da leitura! Além do Certificado de Bronze, você desbloqueou um prêmio especial por sua dedicação à leitura: Cupom de desconto de 50% na Amazon: (#SOUL)"
 
 def main():
+    ranking = []
     rank = arquivo_rank()
 
     rank_sorted = sorted(rank, key=lambda x: (-x[1], x[0])) # Classifica os números em ordem decrescente de pontuação e, em caso de empate, em ordem alfabética do nome
     top3 = rank_sorted[:3] # Pega os três primeiros elementos da lista classificada
 
-    print("\n Ranking:")
     for i, (nome, _) in enumerate(top3, start=1): # Itera sobre os elementos da lista top3 juntamente com um contador i
         brinde = gerar_brinde(i, nome)
-        print(f"{i}º lugar:  {brinde}")
+        ranking.append(f"{i}º lugar: {brinde}")
+
+    return render_template('ranking.html', ranking=ranking)

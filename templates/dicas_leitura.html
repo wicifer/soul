@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul v0.1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Soul v0.1</h1>
+
+    <div class="menu">
+        <h2>Melhore sua leitura!</h2>
+        <ul>
+            {% for dica in dicas %}
+                <li>    
+                    <button class="book_button">{{ dica }}</button>
+        
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <form action="/main_menu" method="GET">
+        <button type="submit">Voltar ao menu principal</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

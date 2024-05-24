@@ -98,8 +98,9 @@ def menu_ofertas():
 def menu_faq():
     return faq.mostrar_menu_perguntas()
 
+@app.route('/dicas_leitura', methods=['GET'])
 def menu_dicas_leitura():
-    dicas_leitura.main()
+   return dicas_leitura.main()
 
 @app.route('/login', methods=['POST'])
 def menu_login():

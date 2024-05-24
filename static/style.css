@@ -1,0 +1,62 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin: 5px 0 2px;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  max-width: 300px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #0fa38b;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.book_button {
+  padding: 10px 15px;
+  background-color: #007180;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.attention_button {
+  padding: 10px 15px;
+  background-color: #720202;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.attention_button:hover {
+  background-color: #1e011f;
+}
+
+button:hover {
+  background-color: #007190;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  color: #0fa38b;
+}

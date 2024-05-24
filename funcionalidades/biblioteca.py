@@ -1,30 +1,8 @@
+from flask import Flask, render_template, request, redirect, url_for, flash
 import json
 
-def main(biblioteca):
-    if not biblioteca:
-      biblioteca = get_biblioteca(biblioteca)
-
-    print("\n Minha biblioteca:\n")
-    mostrar_biblioteca(biblioteca)
-
-    opcoes_biblioteca()
-
-    choice = input("Escolha uma opção: ")
-    if choice == '1':
-      biblioteca = adicionar_livro(biblioteca)
-      return biblioteca
-    elif choice == '2':
-      if len(biblioteca) == 0:
-        print("Não há livros registrados em sua biblioteca.\n")
-      else:
-        biblioteca = menu_livro(biblioteca)
-        return biblioteca
-    elif choice == '3':
-      return biblioteca
-    else:
-        print("Opção inválida.")
-
-def get_biblioteca(biblioteca):
+def get_biblioteca():
+    biblioteca = []
     try:
         file = open('arquivos/biblioteca.txt')
     except:
@@ -38,119 +16,53 @@ def get_biblioteca(biblioteca):
 
     return biblioteca
 
-def mostrar_biblioteca(biblioteca):
-    count = 1
-    for livro in biblioteca:
-        print(f'{count}. {livro}\n')
-        count += 1
-
-def menu_livro(biblioteca):
-    indice = int(input("Digite o número do livro gostaria que deseja selecionar: ")) - 1
-
-    try:
-        livro = biblioteca[indice]
-    except:
-        print("Não há livro com esse número em sua biblioteca.")
-    else:
-        print(f'\n Livro selecionado: \n {livro} \n')
-
-        opcoes_livro()
-
-        choice = input("Escolha uma opção: ")
-        if choice == '1':
-            compartilhar(livro)
-        elif choice == '2':
-            biblioteca = edicao(biblioteca, livro, indice)
-        elif choice == '3':
-            biblioteca = deletar_livro(biblioteca, indice)
-        elif choice == '4':
-            return biblioteca
-        else:
-            print("Opção inválida.")
+def compartilhar(livro, mensagem):
+    livro = json.loads(livro.replace("'", '"'))
     
-    return biblioteca
-
-def compartilhar(livro):
-    print("\nCompartilhando o livro:")
-    print("Título:", livro["titulo"])
-    print("Autor:", livro["autor"])
-    print("Gênero:", livro["genero"])
-    print("Estrelas:", livro["estrelas"])
-
-    compartilhar_opcao = input("Deseja compartilhar este livro? (s/n): ")
-    if compartilhar_opcao.lower() == 's':
-        personalizar = input("Deseja personalizar a mensagem? (s/n): ")
-        if personalizar.lower() == 's':
-            mensagem = input("Adicione uma mensagem para compartilhar o livro: ")
-            mensagem = f"{mensagem} \n{livro['titulo']} por {livro['autor']}"
-        else:
-            mensagem = f"Achei este livro a sua cara! Dê uma chance para {livro['titulo']} por {livro['autor']}."
-        print(f"\nMensagem compartilhada: {mensagem}\n")
+    if mensagem != "padrao":
+        mensagem = f"{mensagem} \n{livro['titulo']} por {livro['autor']}"
     else:
-        print("Livro não compartilhado.\n")
+        mensagem = f"Achei este livro a sua cara! Dê uma chance para {livro['titulo']} por {livro['autor']}."
+    
+    flash("Sua mensagem para compartilhar está pronta!")
+    return render_template('compartilhar_livro.html', livro=livro, mensagem=mensagem)
 
-def edicao(biblioteca, livro, indice):
-    livro_editado = editar_livro(livro)
-    biblioteca[indice] = livro_editado
+def edicao(livro, atributo, novo_atributo):
+    novo_atributo = novo_atributo.replace("'", "").replace('"', '')
+    biblioteca = get_biblioteca()
+    indice = achar_livro(biblioteca, livro)
+    livro = biblioteca[indice]
+
+    livro[atributo] = novo_atributo
+    biblioteca[indice] = livro
     salvar_biblioteca(biblioteca)
-    print("Livro editado!")
-    return biblioteca
 
-def deletar_livro(biblioteca, indice):
-    confirmacao = input("Tem certeza que deseja deletar o livro de sua biblioteca? (s/n): ")
-    if confirmacao.lower() == 's':
-        biblioteca.pop(indice)
-        salvar_biblioteca(biblioteca)
-        print("Livro deletado!")
-    elif confirmacao.lower() == 'n': 
-        print("Ok, livro não deletado!")
-    else:
-        print("Opção inválida.")
-    return biblioteca
-         
-def opcoes_livro():
-    print("1. Compartilhar")  
-    print("2. Editar livro")
-    print("3. Excluir livro")
-    print("4. Voltar ao menu principal")
+    flash("Livro editado!")
+    return render_template('livro.html', livro=livro)
 
-def opcoes_biblioteca():
-    print("1. Adicionar livro")
-    print("2. Selecionar livro")
-    print("3. Voltar ao menu principal")
+def achar_livro(biblioteca, livro_editar):
+    livro_editar = json.loads(livro_editar.replace("'", '"'))
+    for index, livro in enumerate(biblioteca):
+        if  livro['titulo'] == livro_editar['titulo']:
+            return index
 
-def editar_livro(livro):
-    print(f"{livro} \n")
+def deletar_livro(livro):
+    biblioteca = get_biblioteca()
+    indice = achar_livro(biblioteca, livro)
 
-    chaves_livro(livro)
+    biblioteca.pop(indice)
+    salvar_biblioteca(biblioteca)
+    flash("Livro deletado!")
 
-    choice = int(input("\n O que deseja alterar? "))
+    return render_template('biblioteca.html', biblioteca=biblioteca)
 
-    if choice == 1:
-        titulo = input("Digite o novo título: ")
-        livro['titulo'] = titulo
-    elif choice == 2:
-        autor = input("Digite o novo título: ")
-        livro['autor'] = autor
-    elif choice == 3:
-        genero = input("Digite o novo gênero: ")
-        livro['genero'] = genero
-    elif choice == 4:
-        estrelas = int(input("Digite as novas estrelas: "))
-        livro['estrelas'] = estrelas
-    return livro
+def adicionar_livro():
+    biblioteca = get_biblioteca()
 
-def chaves_livro(livro):
-    counter = 1
-    for line in livro:
-        print(f'{counter}. {line}')
-        counter += 1
-
-def adicionar_livro(biblioteca):
-    titulo = input("Digite o título do livro: ")
-    autor = input("Digite o autor: ")
-    genero = input("Digite o gênero: ")
-    estrelas = input("Quantas estrelas? (1-5)")
+    titulo = request.form['titulo'].replace("'", "").replace('"', '')
+    autor = request.form['autor'].replace("'", "").replace('"', '')
+    genero = request.form['genero'].replace("'", "").replace('"', '')
+    estrelas = request.form['estrelas'].replace("'", "").replace('"', '')
 
     livro = {
         "titulo": titulo,
@@ -163,9 +75,9 @@ def adicionar_livro(biblioteca):
 
     salvar_biblioteca(biblioteca)
 
-    print("Livro adicionado! \n")
+    flash("Livro adicionado! \n")
 
-    return biblioteca
+    return render_template('biblioteca.html', biblioteca=biblioteca)
 
 def salvar_biblioteca(biblioteca):
     file = open('arquivos/biblioteca.txt', 'w')

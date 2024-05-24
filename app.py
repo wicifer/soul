@@ -77,8 +77,14 @@ def compartilhar_livro():
     mensagem = request.form['mensagem']
     return biblioteca.compartilhar(livro, mensagem)
 
-def recomendar_livros():
-    recomendacoes.main()
+@app.route('/recomendacoes_menu', methods=['GET'])
+def recomendacoes_menu():
+    return render_template('recomendacoes_menu.html')
+
+@app.route('/recomendacoes', methods=['POST'])
+def recomendar():
+    genero = request.form['genero']
+    return recomendacoes.recomendar(genero)
 
 def menu_ranking():
     ranking.main()

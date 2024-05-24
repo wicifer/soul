@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul v0.1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Soul v0.1</h1>
+
+    <div class="menu">
+        <h2>Recomendações por gênero</h2>
+    </div>
+
+    <form action="/recomendacoes" method="POST">
+        <input type="hidden" name="genero" value="Romance">
+        <button type="submit" class="book_button">Romance</button>
+    </form>
+    <form action="/recomendacoes" method="POST">
+        <input type="hidden" name="genero" value="Ficção Científica">
+        <button type="submit" class="book_button">Ficção Científica</button>
+    </form>
+    <form action="/recomendacoes" method="POST">
+        <input type="hidden" name="genero" value="Fantasia">
+        <button type="submit" class="book_button">Fantasia</button>
+    </form>
+    <form action="/recomendacoes" method="POST">
+        <input type="hidden" name="genero" value="Suspense">
+        <button type="submit" class="book_button">Suspense</button>
+    </form>
+    <form action="/recomendacoes" method="POST">
+        <input type="hidden" name="genero" value="Clássico">
+        <button type="submit" class="book_button">Clássico</button>
+    </form>
+    <form action="/recomendacoes" method="POST">
+        <input type="text" id="genero" name="genero" required>
+        <button type="submit" class="book_button">Outro</button>
+    </form>
+
+    <form action="/main_menu" method="GET">
+        <button type="submit">Voltar ao menu principal</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

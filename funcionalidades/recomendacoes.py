@@ -3,7 +3,7 @@ import json
 
 # Dicionário de livros com suas categorias
 def biblioteca_recomendacoes():
-    file = open('arquivos/recomendacoes.txt')
+    file = open('arquivos/recomendacoes.txt', encoding='utf-8')
     livros = json.load(file)
     return livros
 

@@ -22,7 +22,7 @@ Soul is a simple library managing web application, made with Python using the Fl
 1. **Clone the repository:**
 
     ```sh
-    git clone [https://github.com/wicifer/.git](https://github.com/wicifer/soul.git)
+    git clone https://github.com/wicifer/.git
     
     ```
 

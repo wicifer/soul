@@ -4,7 +4,7 @@ Soul is a simple library managing web application, made with Python using the Fl
 
 ## Features
 
-- Library
+- Library: create book entries, read them, update and delete them.
 - Recommendations
 - Ranking
 - Offers Section
